@@ -3,136 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sami Badal Khan — University of Washington</title>
+<title>Sami Badal Khan</title>
+<meta name="description" content="Sami Badal Khan — computer science and physics at the University of Washington. Quantum Gibbs state preparation and mixing times of Lindbladian dynamics.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#202124;
-    --body:#3c4043;
-    --muted:#5f6368;
-    --link:#00695c;
-    --line:#dadce0;
-    --bg:#ffffff;
-    --maxw:880px;
+    --paper:#f6f8f8;
+    --ink:#101a1e;
+    --body:#37464c;
+    --muted:#6d7d84;
+    --rule:#d9e2e4;
+    --rest:#cbdcdd;
+    --cold:#0e6f78;
+    --cold-deep:#0a4f57;
+    --hot:#b06a12;
+
+    --serif:"Spectral",Georgia,serif;
+    --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   }
+
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
   body{
-    margin:0;
-    font-family:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    color:var(--body);
-    background:var(--bg);
-    line-height:1.6;
-    font-size:16px;
+    margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
   }
-  a{color:var(--link);text-decoration:none;}
-  a:hover{text-decoration:underline;color:#004d44;}
-  a:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px;}
 
-  /* top bar, like the Google Sites header */
-  header.topbar{border-bottom:1px solid var(--line);background:var(--bg);}
-  .topbar-inner{max-width:var(--maxw);margin:0 auto;padding:18px 24px;}
-  .sitename{font-size:22px;font-weight:400;color:var(--ink);letter-spacing:.2px;}
+  a{color:var(--cold);text-decoration:none;border-bottom:1px solid rgba(14,111,120,.28);}
+  a:hover{color:var(--cold-deep);border-bottom-color:var(--cold-deep);}
+  a:focus-visible{outline:2px solid var(--cold);outline-offset:3px;border-radius:2px;}
 
-  main{max-width:var(--maxw);margin:0 auto;padding:40px 24px 56px;}
+  .page{max-width:720px;margin:0 auto;padding:72px 28px 80px;}
 
-  /* profile block */
-  .profile{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;}
-  .photo{
-    flex:0 0 auto;width:200px;height:240px;border-radius:6px;
-    overflow:hidden;background:#f1f3f4;border:1px solid var(--line);
+  /* ---------- masthead ---------- */
+  .top{display:flex;gap:32px;align-items:flex-start;}
+  .top-text{flex:1 1 auto;min-width:0;}
+  h1{
+    font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.05;
+    letter-spacing:-.018em;color:var(--ink);margin:0 0 12px;
   }
-  .photo img,.photo svg{width:100%;height:100%;display:block;object-fit:cover;}
-  .intro{flex:1 1 320px;min-width:260px;}
-  h1.name{font-size:30px;font-weight:500;color:var(--ink);margin:4px 0 6px;letter-spacing:.2px;}
-  .affil{font-size:16px;color:var(--muted);margin:0 0 14px;}
-  .links-row{font-size:15px;margin:0;}
-  .links-row a{margin-right:16px;display:inline-block;}
+  .where{margin:0;color:var(--body);}
+  .where span{color:var(--muted);}
+  .links{margin:16px 0 0;font-family:var(--mono);font-size:12.5px;}
+  .links a{margin-right:18px;display:inline-block;}
+  .portrait{
+    flex:0 0 auto;width:118px;height:144px;overflow:hidden;
+    border:1px solid var(--rule);background:#e8eeef;border-radius:2px;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;}
 
-  /* editable placeholders */
-  .placeholder{color:#5f6368;background:#eef1f1;border-bottom:1px dashed #b9c2c1;padding:0 3px;border-radius:2px;}
+  p{margin:0 0 15px;}
+  p:last-child{margin-bottom:0;}
 
-  .bio{margin-top:34px;}
-  .bio p{margin:18px 0;}
-
+  /* ---------- sections ---------- */
+  section{margin-top:46px;}
   h2{
-    font-size:22px;font-weight:500;color:var(--ink);
-    margin:44px 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:11.5px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    margin:0 0 20px;padding-top:14px;border-top:1px solid var(--rule);
   }
 
-  ul.pubs{list-style:none;padding:0;margin:18px 0;}
-  ul.pubs li{margin:0 0 22px;padding:0;}
-  .pub-title{color:var(--ink);font-weight:500;}
-  .pub-meta{display:block;color:var(--muted);font-size:15px;margin-top:2px;}
-  .pub-links{font-size:14px;color:var(--muted);}
-  .note{color:var(--muted);font-size:15px;}
+  .courses{list-style:none;margin:0;padding:0;}
+  .courses li{margin-bottom:11px;}
+  .courses li:last-child{margin-bottom:0;}
+  .courses .num{font-family:var(--serif);font-weight:600;color:var(--ink);}
+  .courses .name{font-style:italic;}
+  .courses .yr{font-family:var(--mono);font-size:12px;color:var(--muted);}
 
-  .contact{margin-top:40px;font-size:16px;}
+  .aside{color:var(--muted);font-size:15.5px;}
+  .soon{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--ink);
+        letter-spacing:-.01em;margin:0 0 10px;}
+
+  /* ---------- figure: equilibration ---------- */
+  figure{margin:26px 0 0;}
+  figure svg{display:block;width:100%;height:auto;}
+  figcaption{
+    display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+    margin-top:10px;padding-top:9px;border-top:1px solid var(--rule);
+    font-size:13px;line-height:1.55;color:var(--muted);
+  }
+  figcaption .eq{font-family:var(--mono);font-size:11.5px;}
+  figcaption sup,figcaption sub{font-size:8.5px;line-height:0;position:relative;}
+  figcaption sup{top:-.45em;}
+  figcaption sub{bottom:-.2em;}
+  button.perturb{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--cold);background:none;border:1px solid rgba(14,111,120,.35);
+    border-radius:2px;padding:3px 10px;cursor:pointer;white-space:nowrap;
+    transition:background .15s,color .15s;
+  }
+  button.perturb:hover{background:var(--cold);color:var(--paper);border-color:var(--cold);}
+  button.perturb:focus-visible{outline:2px solid var(--cold);outline-offset:2px;}
 
   footer{
-    max-width:var(--maxw);margin:0 auto;padding:22px 24px;
-    border-top:1px solid var(--line);color:var(--muted);font-size:13px;
+    margin-top:52px;padding-top:14px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;
   }
 
-  @media (max-width:560px){
-    h1.name{font-size:26px;}
-    .photo{width:140px;height:170px;}
-    main{padding:28px 20px 44px;}
+  @media (max-width:600px){
+    .page{padding:44px 22px 64px;}
+    .top{gap:20px;}
+    h1{font-size:31px;}
+    .portrait{width:88px;height:108px;}
+    figcaption{flex-direction:column;gap:10px;}
   }
 </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <span class="sitename">Sami Badal Khan</span>
+
+<div class="page">
+
+  <header class="top">
+    <div class="top-text">
+      <h1>Sami Badal Khan</h1>
+      <p class="where">Undergraduate, Computer Science &amp; Physics<br>
+        <span>University of Washington</span></p>
+      <p class="links">
+        <a href="mailto:skbk@cs.washington.edu">skbk@cs.washington.edu</a>
+        <a href="cv.pdf">cv</a>
+        <a href="https://github.com/Sami-Oshaman">github</a>
+      </p>
+    </div>
+    <div class="portrait">
+      <img src="headshot.png" alt="Sami Badal Khan">
     </div>
   </header>
 
-  <main>
-    <section class="profile">
-      <div class="photo">
-        <!-- REPLACE with your headshot: <img src="headshot.jpg" alt="Sami [Last Name]"> -->
-       <img src="headshot.png" alt="Sami [Last Name]"></img>
-      </div>
-      <div class="intro">
-        <h1 class="name">Sami&nbsp;<span class="placeholder">[Last Name]</span></h1>
-        <p class="affil">Computer Science &amp; Physics · University of Washington</p>
-        <p class="links-row">
-          <a href="#">CV</a>
-          <a href="#">GitHub</a>
-          <a href="#">Google Scholar</a>
-          <a href="mailto:netid@uw.edu">Email</a>
-        </p>
-      </div>
-    </section>
+  <section>
+    <h2>About</h2>
+    <p>Hello — I'm a senior at the University of Washington studying computer science and physics, advised by <a href="https://www.andreacoladangelo.com/">Andrea Coladangelo</a>. I'm a member of the <a href="https://theory.cs.washington.edu/">CS theory</a> and <a href="https://quantum.cs.washington.edu/">quantum computation</a> research groups. My research is on quantum Gibbs state preparation and the mixing of Lindbladian dynamics, though I'm broadly interested in quantum algorithms and complexity.</p>
+    <p>This summer I'm a research intern at <a href="https://www.ibm.com/quantum">IBM Quantum</a> at the T.J. Watson Research Center. I also write problems for Science Olympiad.</p>
+  </section>
 
-    <section class="bio">
-      <p>Hi! I'm a senior studying Computer Science and Physics (with a minor in Mathematics) at the <a href="https://www.cs.washington.edu/">Paul G. Allen School of Computer Science &amp; Engineering</a> at the University of Washington, where I am advised by <a href="https://www.andreacoladangelo.com/">Andrea Coladangelo</a>. I am part of the <a href="https://theory.cs.washington.edu/">theory group</a> and the <a href="https://quantum.cs.washington.edu/">quantum group</a>. My research is in quantum algorithms and quantum information, with a focus on Gibbs state preparation, thermalization, and the mixing of open-system (Lindbladian) dynamics — and, more broadly, the interface between statistical mechanics and quantum complexity.</p>
+  <section>
+    <h2>Research</h2>
+    <p>How long does an open quantum system take to thermalize, and what about a Hamiltonian forces it to happen quickly? I'm working toward a proof that exponential decay of correlations implies polynomial mixing time for the Chen–Kastoryano–Gilyén Gibbs sampler on commuting, geometrically local Hamiltonians at fixed inverse temperature.</p>
+    <p>The technical core is relating static correlation structure — clustering of correlations, decay of conditional mutual information — to dynamic quantities like the spectral gap of the Lindbladian, using quasi-factorization of relative entropy together with locality of the Gibbs state.</p>
 
-      <p>In Summer 2026, I am a research intern at <a href="https://www.ibm.com/quantum">IBM Quantum</a> on the Qiskit Serverless team at the IBM T.J. Watson Research Center. At the Allen School I have also been a teaching assistant, and I help write problems for Science Olympiad.</p>
-    </section>
+    <figure>
+      <svg id="mix" viewBox="0 0 720 100" role="img"
+           aria-label="A one-dimensional chain relaxing back to thermal equilibrium after a local perturbation, with the trace distance to the Gibbs state decaying to zero.">
+        <path id="mix-curve" fill="none" stroke="var(--cold)" stroke-width="1.4"
+              stroke-linejoin="round" stroke-linecap="round"></path>
+        <g id="mix-sites"></g>
+      </svg>
+      <figcaption>
+        <span>A local perturbation of a chain relaxing back to its Gibbs state; the curve is the trace distance
+          <span class="eq">‖e<sup>tL</sup>(ρ) − σ<sub>β</sub>‖<sub>1</sub></span>.</span>
+        <button class="perturb" id="mix-kick" type="button">perturb</button>
+      </figcaption>
+    </figure>
+  </section>
 
-    <section>
-      <h2>Publications</h2>
-      <ul class="pubs">
-        <li>
-          <span class="pub-title placeholder">Paper title goes here.</span>
-          <span class="pub-meta">with <span class="placeholder">Coauthor Name</span> · <span class="placeholder">Venue, Year</span></span>
-          <span class="pub-links">[<a href="#">paper</a> / <a href="#">arXiv</a>]</span>
-        </li>
-      </ul>
-      <p class="note">Manuscripts in preparation — coming soon.</p>
-    </section>
+  <section>
+    <h2>Publications</h2>
+    <p class="soon">Coming soon!</p>
+    <p>My first manuscript — on mixing times for quantum Gibbs samplers, with Andrea Coladangelo — is in preparation. Preprints and talk slides will be posted here.</p>
+  </section>
 
-    <section class="contact">
-      Email: <a href="mailto:netid@uw.edu">netid@uw.edu</a>
-    </section>
-  </main>
+  <section>
+    <h2>Teaching</h2>
+    <ul class="courses">
+      <li><span class="num">CSE 534</span>: <span class="name">Quantum Information and Computation</span> (graduate). <span class="yr">2025</span></li>
+      <li><span class="num">CSE 434</span>: <span class="name">Introduction to Quantum Computing</span>. <span class="yr">2025</span></li>
+      <li><span class="num">CSE 351</span>: <span class="name">The Hardware/Software Interface</span>. <span class="yr">2025</span></li>
+    </ul>
+  </section>
 
-  <footer>
-    Personal academic site. Replace the highlighted placeholders with your own details.
-  </footer>
+  <section>
+    <h2>Curriculum vitae</h2>
+    <p><a href="cv.pdf">Curriculum vitae (PDF)</a> <span class="aside">— updated July 2026.</span></p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Sami Badal Khan<br>
+      Paul G. Allen School of Computer Science &amp; Engineering<br>
+      University of Washington<br>
+      Seattle, WA 98195</p>
+    <p class="aside">Email: <a href="mailto:skbk@cs.washington.edu">skbk@cs.washington.edu</a></p>
+  </section>
+
+  <footer>last updated july 2026</footer>
+
+</div>
+
+<script>
+(function () {
+  var N = 36, W = 720, GAP = 3;
+  var svg = document.getElementById('mix');
+  if (!svg) return;
+  var sitesG = document.getElementById('mix-sites');
+  var curve  = document.getElementById('mix-curve');
+  var kick   = document.getElementById('mix-kick');
+
+  var cw = W / N, rw = cw - GAP;
+  var CY = 62, CH = 30;          // lattice band
+  var PY = 4,  PH = 42;          // curve band
+  var WINDOW = 300;              // steps drawn across the full width
+
+  var rest = [203, 220, 221];    // equilibrium tint
+  var hot  = [176, 106, 18];     // local excitation
+
+  var rects = [];
+  for (var i = 0; i < N; i++) {
+    var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    r.setAttribute('x', (i * cw + GAP / 2).toFixed(2));
+    r.setAttribute('y', CY);
+    r.setAttribute('width', rw.toFixed(2));
+    r.setAttribute('height', CH);
+    r.setAttribute('rx', '1');
+    sitesG.appendChild(r);
+    rects.push(r);
+  }
+
+  var u = new Float64Array(N), v = new Float64Array(N);
+  var D = 0.21, GAMMA = 0.014, trace = [], step = 0, raf = null, norm0 = 1;
+
+  function paint() {
+    for (var i = 0; i < N; i++) {
+      var a = Math.min(1, Math.max(0, u[i]));
+      rects[i].setAttribute('fill',
+        'rgb(' + Math.round(rest[0] + (hot[0] - rest[0]) * a) + ','
+               + Math.round(rest[1] + (hot[1] - rest[1]) * a) + ','
+               + Math.round(rest[2] + (hot[2] - rest[2]) * a) + ')');
+    }
+    var d = '';
+    for (var k = 0; k < trace.length; k++) {
+      d += (k === 0 ? 'M' : 'L') + ((k / WINDOW) * W).toFixed(1)
+         + ' ' + (PY + PH - trace[k] * PH).toFixed(1);
+    }
+    curve.setAttribute('d', d);
+  }
+
+  function advance() {
+    for (var i = 0; i < N; i++) {
+      var l = u[i > 0 ? i - 1 : 0], r = u[i < N - 1 ? i + 1 : N - 1];
+      v[i] = u[i] + D * (l - 2 * u[i] + r) - GAMMA * u[i];
+    }
+    u.set(v);
+    var s = 0;
+    for (var j = 0; j < N; j++) s += Math.abs(u[j]);
+    trace.push(Math.min(1, s / norm0));
+    step++;
+    return s / norm0;
+  }
+
+  function seed() {
+    u.fill(0);
+    u[4 + Math.floor(Math.random() * (N - 8))] = 1;
+    var s = 0;
+    for (var j = 0; j < N; j++) s += Math.abs(u[j]);
+    norm0 = s; trace = [1]; step = 0;
+  }
+
+  var reduced = window.matchMedia &&
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function settle() {                 // run headless, show the relaxed state
+    seed();
+    for (var t = 0; t < WINDOW; t++) advance();
+    paint();
+  }
+
+  function run() {
+    if (raf) cancelAnimationFrame(raf);
+    seed(); paint();
+    (function frame() {
+      var m = advance();
+      paint();
+      if (step < WINDOW && m > 0.004) raf = requestAnimationFrame(frame);
+      else { u.fill(0); paint(); raf = null; }
+    })();
+  }
+
+  if (reduced) { settle(); kick.addEventListener('click', settle); }
+  else { run(); kick.addEventListener('click', run); }
+})();
+</script>
+
 </body>
 </html>
